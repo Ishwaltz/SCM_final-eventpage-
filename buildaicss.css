@@ -22,7 +22,12 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--primary-text);
+    background-color: var(--background-light);
+}
 
 .container {
     width: 100%;
