@@ -58,6 +58,7 @@ a:hover {
 img {
     max-width: 100%;
     height: auto;
+    border-radius: 8px;
 }
 
 .section-header {
@@ -76,6 +77,16 @@ img {
     color: var(--white);
 }
 
+.section-header h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    margin: 12px auto 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--google-blue), var(--google-yellow));
+}
+
 .underline {
     height: 4px;
     width: 70px;
@@ -85,6 +96,16 @@ img {
 
 section {
     padding: 5rem 0;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInSection 1.2s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+@keyframes fadeInSection {
+    to {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 /* Navbar */
@@ -152,12 +173,18 @@ section {
     color: var(--white);
     padding: 4rem 0;
     position: relative;
+    animation: floatBg 12s ease-in-out infinite alternate;
+}
+
+@keyframes floatBg {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
 }
 
 .event-card {
     background-color: var(--white);
     border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 24px 0 rgba(66,133,244,0.08), 0 1.5px 6px 0 rgba(60,64,67,0.08);
     padding: 3rem;
     max-width: 800px;
     margin: 0 auto;
@@ -235,20 +262,32 @@ section {
 .btn-primary {
     background-color: var(--google-blue);
     color: var(--white);
-    box-shadow: 0 4px 10px rgba(66, 133, 244, 0.3);
+    box-shadow: 0 0 0 0 rgba(66,133,244,0.5);
+    animation: glowBtn 2.5s infinite alternate;
+    border-image: linear-gradient(90deg, var(--google-blue), var(--google-green)) 1;
+    border-width: 2px;
+    border-style: solid;
+}
+
+@keyframes glowBtn {
+    0% { box-shadow: 0 0 0 0 rgba(66,133,244,0.15);}
+    100% { box-shadow: 0 0 16px 4px rgba(66,133,244,0.25);}
 }
 
 .btn-primary:hover {
     background-color: var(--google-blue-light);
     color: var(--white);
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(66, 133, 244, 0.4);
+    box-shadow: 0 6px 15px rgba(66,133,244,0.4);
 }
 
 .btn-secondary {
     background-color: transparent;
     color: var(--google-blue);
     border: 2px solid var(--google-blue);
+    border-image: linear-gradient(90deg, var(--google-blue), var(--google-green)) 1;
+    border-width: 2px;
+    border-style: solid;
 }
 
 .btn-secondary:hover {
@@ -353,11 +392,13 @@ section {
     border-radius: 8px;
     padding: 1.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 24px 0 rgba(66,133,244,0.08), 0 1.5px 6px 0 rgba(60,64,67,0.08);
 }
 
 .speaker-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    background: linear-gradient(120deg, #f8fafc 60%, #e3f2fd 100%);
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 32px rgba(66,133,244,0.13);
 }
 
 .speaker-image {
@@ -453,7 +494,7 @@ section {
     border-radius: 8px;
     padding: 1.5rem;
     margin-bottom: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 24px 0 rgba(66,133,244,0.08), 0 1.5px 6px 0 rgba(60,64,67,0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -546,6 +587,7 @@ section {
     background-color: var(--white);
     border-radius: 8px;
     padding: 2rem;
+    box-shadow: 0 6px 24px 0 rgba(66,133,244,0.08), 0 1.5px 6px 0 rgba(60,64,67,0.08);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
@@ -604,7 +646,7 @@ section {
     background-color: var(--white);
     border-radius: 8px;
     margin-bottom: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 24px 0 rgba(66,133,244,0.08), 0 1.5px 6px 0 rgba(60,64,67,0.08);
     overflow: hidden;
 }
 
@@ -871,6 +913,12 @@ footer {
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    animation: bounceTop 2s infinite;
+}
+
+@keyframes bounceTop {
+    0%, 100% { transform: translateY(0);}
+    50% { transform: translateY(-8px);}
 }
 
 #back-to-top:hover {
